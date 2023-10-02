@@ -2,6 +2,7 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 
 def get_menu_kb() -> ReplyKeyboardMarkup:
+    """Метод возвращает клавиатуру меню с главными командами бота"""
     my_kb = ReplyKeyboardMarkup(resize_keyboard=True,
                                 one_time_keyboard=False,
                                 row_width=2)

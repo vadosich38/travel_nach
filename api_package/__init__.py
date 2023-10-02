@@ -1,3 +1,3 @@
-from .api_cheapests_ticket import *
+from .api_class import *
 
 print("INIT api_package")

@@ -1,3 +1,3 @@
-from .city_checker import check_city
+from .city_checker import *
 
 print("INIT processing")

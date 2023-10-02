@@ -19,18 +19,19 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 
 
-@my_disp.message_handler(lambda message: message.text, Text(equals="💸 Найти дешевые билеты 💸", ignore_case=False))
-async def cmd_cheapest_regim(message: types.Message):
-    await message.reply(text="<b>Давайте найдем дешевые билеты для вашего перелета 👀</b>\n\n"
+@my_disp.message_handler(lambda message: message.text, Text(equals="🛩 Найти билеты в дипазоне цен 🛩",
+                                                            ignore_case=False))
+async def cmd_diapason_regim(message: types.Message):
+    await message.reply(text="<b>Давайте найдем билеты в вашем диапазоне цен 👀</b>\n\n"
                              "Из какого города вы летите? ✈️",
                         parse_mode='HTML',
                         reply_markup=get_cancel_kb())
-    await BotStates.cheap_from_city_wait.set()
+    await BotStates.diapason_from_city_wait.set()
 
 
 @my_disp.message_handler(lambda message: message.text,
                          Text(equals="💥 ВЕРНУТСЬЯ В ГЛАВНОЕ МЕНЮ 💥", ignore_case=False),
-                         state=BotStates.cheap_from_city_wait)
+                         state=BotStates.diapason_from_city_wait)
 async def cmd_cancel_from_city_wait(message: types.Message, state: FSMContext):
     """Функция хендлер обрабатывает кнопку возврата в главное меню"""
     await message.reply(text="Вы вернулись в главное меню", reply_markup=get_menu_kb())
@@ -39,7 +40,7 @@ async def cmd_cancel_from_city_wait(message: types.Message, state: FSMContext):
 
 @my_disp.message_handler(lambda message: message.text,
                          Text(equals="💥 ВЕРНУТСЬЯ В ГЛАВНОЕ МЕНЮ 💥", ignore_case=False),
-                         state=BotStates.cheap_from_city_confirm)
+                         state=BotStates.diapason_from_city_confirm)
 async def cmd_cancel_from_city_confirm(message: types.Message, state: FSMContext):
     """Функция хендлер обрабатывает кнопку возврата в главное меню"""
     await message.reply(text="Вы вернулись в главное меню", reply_markup=get_menu_kb())
@@ -48,7 +49,7 @@ async def cmd_cancel_from_city_confirm(message: types.Message, state: FSMContext
 
 @my_disp.message_handler(lambda message: message.text,
                          Text(equals="💥 ВЕРНУТСЬЯ В ГЛАВНОЕ МЕНЮ 💥", ignore_case=False),
-                         state=BotStates.cheap_to_city_wait)
+                         state=BotStates.diapason_to_city_wait)
 async def cmd_cancel_to_city_wait(message: types.Message, state: FSMContext):
     """Функция хендлер обрабатывает кнопку возврата в главное меню"""
     await message.reply(text="Вы вернулись в главное меню", reply_markup=get_menu_kb())
@@ -57,7 +58,7 @@ async def cmd_cancel_to_city_wait(message: types.Message, state: FSMContext):
 
 @my_disp.message_handler(lambda message: message.text,
                          Text(equals="💥 ВЕРНУТСЬЯ В ГЛАВНОЕ МЕНЮ 💥", ignore_case=False),
-                         state=BotStates.cheap_to_city_confirm)
+                         state=BotStates.diapason_to_city_confirm)
 async def cmd_cancel_to_city_confirm(message: types.Message, state: FSMContext):
     """Функция хендлер обрабатывает кнопку возврата в главное меню"""
     await message.reply(text="Вы вернулись в главное меню", reply_markup=get_menu_kb())
@@ -66,7 +67,7 @@ async def cmd_cancel_to_city_confirm(message: types.Message, state: FSMContext):
 
 @my_disp.message_handler(lambda message: message.text,
                          Text(equals="💥 ВЕРНУТСЬЯ В ГЛАВНОЕ МЕНЮ 💥", ignore_case=False),
-                         state=BotStates.cheap_return)
+                         state=BotStates.diapason_return)
 async def cmd_cancel_return(message: types.Message, state: FSMContext):
     """Функция хендлер обрабатывает кнопку возврата в главное меню"""
     await message.reply(text="Вы вернулись в главное меню", reply_markup=get_menu_kb())
@@ -75,7 +76,7 @@ async def cmd_cancel_return(message: types.Message, state: FSMContext):
 
 @my_disp.message_handler(lambda message: message.text,
                          Text(equals="💥 ВЕРНУТСЬЯ В ГЛАВНОЕ МЕНЮ 💥", ignore_case=False),
-                         state=BotStates.cheap_start_period_month)
+                         state=BotStates.diapason_start_period_month)
 async def cmd_cancel_start_period_month(message: types.Message, state: FSMContext):
     """Функция хендлер обрабатывает кнопку возврата в главное меню"""
     await message.reply(text="Вы вернулись в главное меню", reply_markup=get_menu_kb())
@@ -84,7 +85,7 @@ async def cmd_cancel_start_period_month(message: types.Message, state: FSMContex
 
 @my_disp.message_handler(lambda message: message.text,
                          Text(equals="💥 ВЕРНУТСЬЯ В ГЛАВНОЕ МЕНЮ 💥", ignore_case=False),
-                         state=BotStates.cheap_start_period_date)
+                         state=BotStates.diapason_start_period_date)
 async def cmd_cancel_start_period_date(message: types.Message, state: FSMContext):
     """Функция хендлер обрабатывает кнопку возврата в главное меню"""
     await message.reply(text="Вы вернулись в главное меню", reply_markup=get_menu_kb())
@@ -93,7 +94,7 @@ async def cmd_cancel_start_period_date(message: types.Message, state: FSMContext
 
 @my_disp.message_handler(lambda message: message.text,
                          Text(equals="💥 ВЕРНУТСЬЯ В ГЛАВНОЕ МЕНЮ 💥", ignore_case=False),
-                         state=BotStates.cheap_period_choose)
+                         state=BotStates.diapason_period_choose)
 async def cmd_cancel_period_choose(message: types.Message, state: FSMContext):
     """Функция хендлер обрабатывает кнопку возврата в главное меню"""
     await message.reply(text="Вы вернулись в главное меню", reply_markup=get_menu_kb())
@@ -102,14 +103,14 @@ async def cmd_cancel_period_choose(message: types.Message, state: FSMContext):
 
 @my_disp.message_handler(lambda message: message.text,
                          Text(equals="💥 ВЕРНУТСЬЯ В ГЛАВНОЕ МЕНЮ 💥", ignore_case=False),
-                         state=BotStates.cheap_tickets_review)
+                         state=BotStates.diapason_tickets_review)
 async def cmd_cancel_tickets_review(message: types.Message, state: FSMContext):
     """Функция хендлер обрабатывает кнопку возврата в главное меню"""
     await message.reply(text="Вы вернулись в главное меню", reply_markup=get_menu_kb())
     await state.finish()
 
 
-@my_disp.message_handler(lambda message: message.text, state=BotStates.cheap_from_city_wait)
+@my_disp.message_handler(lambda message: message.text, state=BotStates.diapason_from_city_wait)
 async def from_city(message: types.Message, state: FSMContext):
     """Функция хендлер получает и записывает город вылета"""
     check_res = check_city(city_name=message.text)
@@ -124,14 +125,14 @@ async def from_city(message: types.Message, state: FSMContext):
                                            f"\n\n<b>ПОДТВЕРДИТЕ ВЫБОР ГОРОДА ВЫЛЕТА</b>",
                                       parse_mode="HTML",
                                       reply_markup=get_confirm_ikb())
-            await BotStates.cheap_from_city_confirm.set()
+            await BotStates.diapason_from_city_confirm.set()
 
         else:
             await message.reply(text="Вы ввели город не корректно либо в нем нет аэропортов. \nПопробуйте еще раз 🛟",
                                 reply_markup=get_cancel_kb())
 
 
-@my_disp.callback_query_handler(state=BotStates.cheap_from_city_confirm, text="confirm")
+@my_disp.callback_query_handler(state=BotStates.diapason_from_city_confirm, text="confirm")
 async def from_city_confirm(callback_data: types.CallbackQuery):
     """Функция колбек хендлер, принимает подтверждение выбора города вылета"""
     await callback_data.answer(text="Вы подтвердили город вылета!")
@@ -140,10 +141,10 @@ async def from_city_confirm(callback_data: types.CallbackQuery):
                                    message_id=callback_data.message.message_id,
                                    text="🌀 Теперь напишите город, куда вы хотите лететь 🌀")
 
-    await BotStates.cheap_to_city_wait.set()
+    await BotStates.diapason_to_city_wait.set()
 
 
-@my_disp.message_handler(lambda message: message.text, state=BotStates.cheap_to_city_wait)
+@my_disp.message_handler(lambda message: message.text, state=BotStates.diapason_to_city_wait)
 async def to_city(message: types.Message, state: FSMContext):
     """Функция хендлер принимает и записывает город назначения"""
 
@@ -158,14 +159,14 @@ async def to_city(message: types.Message, state: FSMContext):
                                            f"\n\n<b>ПОДТВЕРДИТЕ ВЫБОР ГОРОДА НАЗНАЧЕНИЯ</b>",
                                       parse_mode="HTML",
                                       reply_markup=get_confirm_ikb())
-            await BotStates.cheap_to_city_confirm.set()
+            await BotStates.diapason_to_city_confirm.set()
 
         else:
             await message.reply(text="Вы ввели город не корректно либо в нем нет аэропортов. \nПопробуйте еще раз 🛟",
                                 reply_markup=get_cancel_kb())
 
 
-@my_disp.callback_query_handler(state=BotStates.cheap_to_city_confirm)
+@my_disp.callback_query_handler(state=BotStates.diapason_to_city_confirm)
 async def to_city_confirm(callback_data: types.CallbackQuery):
     """Функция хендлер коллбека принимает подтверждение выбора города назначения"""
     await callback_data.answer(text="Вы подтвердили город вылета!")
@@ -175,10 +176,10 @@ async def to_city_confirm(callback_data: types.CallbackQuery):
                                    text="🌀 Давайте сразу найдем обратные билеты? 🌀",
                                    reply_markup=get_return_ikb())
 
-    await BotStates.cheap_return.set()
+    await BotStates.diapason_return.set()
 
 
-@my_disp.callback_query_handler(state=BotStates.cheap_return)
+@my_disp.callback_query_handler(state=BotStates.diapason_return)
 async def return_choose(callback_data: types.CallbackQuery, state: FSMContext):
     """Функция хендлер коллбека принимающая решение пользователя об обратном рейсе"""
 
@@ -190,10 +191,10 @@ async def return_choose(callback_data: types.CallbackQuery, state: FSMContext):
                                    message_id=callback_data.message.message_id,
                                    text="Укажите дату начала периода, от когда нужно искать билеты",
                                    reply_markup=get_month_ikb())
-    await BotStates.cheap_start_period_month.set()
+    await BotStates.diapason_start_period_month.set()
 
 
-@my_disp.callback_query_handler(state=BotStates.cheap_start_period_month)
+@my_disp.callback_query_handler(state=BotStates.diapason_start_period_month)
 async def get_start_month(callback_data: types.CallbackQuery, state: FSMContext):
     """Функция колбек хендлер, принимает месяц начала периода поиска билетов"""
     async with state.proxy() as data:
@@ -203,10 +204,10 @@ async def get_start_month(callback_data: types.CallbackQuery, state: FSMContext)
                                    message_id=callback_data.message.message_id,
                                    text="Теперь выберите точную дату",
                                    reply_markup=get_date_ikb(month=data["start_date"][5:]))
-    await BotStates.cheap_start_period_date.set()
+    await BotStates.diapason_start_period_date.set()
 
 
-@my_disp.callback_query_handler(state=BotStates.cheap_start_period_date)
+@my_disp.callback_query_handler(state=BotStates.diapason_start_period_date)
 async def get_start_date(callback_data: types.CallbackQuery, state: FSMContext):
     """Функция колбек хендлер, принимает дату начала периода поиска билетов"""
     async with state.proxy() as data:
@@ -217,64 +218,99 @@ async def get_start_date(callback_data: types.CallbackQuery, state: FSMContext):
                                    text="Теперь выберите период, "
                                         "в течении которого от выбранной даты вы бы хотели вылететь",
                                    reply_markup=get_periods_ikb())
-    await BotStates.cheap_period_choose.set()
+    await BotStates.diapason_period_choose.set()
 
 
-@my_disp.callback_query_handler(state=BotStates.cheap_period_choose)
+@my_disp.callback_query_handler(state=BotStates.diapason_period_choose)
 async def get_period(callback_data: types.CallbackQuery, state: FSMContext):
     """Функция колбек хендлер, принимает период поиска билетов
-    Удаляет предыдущее сообщение и присылает список билетов
-    Записывает в историю результаты поиска"""
+    Запрашивает у пользователя минимальную точку диапазона цен для поиска билетов"""
     await callback_data.message.delete()
 
     async with state.proxy() as data:
         data["period"] = callback_data.data
-        data["curr_ticket"] = 0
 
-    tickets_bundle = ApiMethods.get_cheapest_tickets(from_city=data["from_city_iata"],
-                                                     to_city=data["to_city_iata"],
-                                                     date=data["start_date"],
-                                                     period=data["period"],
-                                                     one_way=data["return"])
-    async with state.proxy() as data:
-        data["tickets_count"] = len(tickets_bundle)
-        print("Колво билетов", data["tickets_count"])
-        data["tickets_bundle"] = tickets_bundle
-
-    if data["tickets_count"] > 1:
-        await my_bot.send_message(chat_id=callback_data.from_user.id,
-                                  text=get_listing_text(data=data,
-                                                        tickets_bundle=tickets_bundle),
-                                  parse_mode="HTML",
-                                  reply_markup=get_tickets_ikb(link=tickets_bundle[data["curr_ticket"]]['gate']))
-
-        result_text = "".join(str(tickets_bundle))
-        await BotStates.cheap_tickets_review.set()
-    elif data["tickets_count"] == 1:
-        await my_bot.send_message(chat_id=callback_data.from_user.id,
-                                  text=get_listing_text(data=data,
-                                                        tickets_bundle=tickets_bundle),
-                                  parse_mode="HTML",
-                                  reply_markup=get_small_tickets_ikb(link=tickets_bundle[data["curr_ticket"]]['gate']))
-
-        result_text = "".join(str(tickets_bundle))
-        await BotStates.cheap_tickets_review.set()
-    else:
-        await my_bot.send_message(chat_id=callback_data.from_user.id,
-                                  text="Билеты не найдены. Попробуйте найти самостоятельно на aviasales.com",
-                                  reply_markup=get_menu_kb())
-
-        result_text = None
-        await state.finish()
-
-    DBMethods.add_result(conn=history_db_connect, user_id=callback_data.from_user.id,
-                         command_type="Самые дешевые билеты", city_from=data["from_city"], city_to=data["to_city"],
-                         start_date=data["start_date"], period=data["period"], return_fly=data["return"],
-                         results=result_text)
+    await my_bot.send_message(chat_id=callback_data.from_user.id,
+                              text="✂️ Напишите минимальную цену поиска билетов:")
+    await BotStates.diapason_min_price_wait.set()
 
 
-@my_disp.callback_query_handler(state=BotStates.cheap_tickets_review, text=">>")
-async def cheap_next_ticket(callback_data: types.CallbackQuery, state: FSMContext):
+@my_disp.message_handler(state=BotStates.diapason_min_price_wait)
+async def get_min_price(message: types.Message, state: FSMContext):
+    """Функция хендлер сообщения, записывает минимальную точку диапазона цен поиска билетов"""
+    try:
+        min_price = int(message.text)
+        async with state.proxy() as data:
+            data["min_price"] = min_price
+        await my_bot.send_message(chat_id=message.from_user.id,
+                                  text="✂️ Напишите максимальную цену поиска билетов:")
+        await BotStates.diapason_max_price_wait.set()
+    except TypeError as error:
+        await message.reply(text="Некорректный ввод! Напишите минимальную цену билета цифрами в евро")
+        print(error)
+
+
+@my_disp.message_handler(state=BotStates.diapason_max_price_wait)
+async def get_max_price(message: types.Message, state: FSMContext):
+    """Функция хендлер сообщения, записывает максимальную точку диапазона цен поиска билетов
+    Получает список билетов и отправляет их пользователю как результат поиска
+    Записывает поисковый запрос и результаты поиска в БД"""
+    try:
+        max_price = int(message.text)
+
+        async with state.proxy() as data:
+            data["max_price"] = max_price
+            data["curr_ticket"] = 0
+        tickets_bundle = ApiMethods.get_diapason_tickets(from_city=data["from_city_iata"],
+                                                         to_city=data["to_city_iata"],
+                                                         date=data["start_date"],
+                                                         period=data["period"],
+                                                         one_way=data["return"],
+                                                         min_price=data["min_price"],
+                                                         max_price=data["max_price"])
+        async with state.proxy() as data:
+            data["tickets_count"] = len(tickets_bundle)
+            print("Колво билетов", data["tickets_count"])
+            data["tickets_bundle"] = tickets_bundle
+
+        if data["tickets_count"] > 1:
+            await my_bot.send_message(chat_id=message.from_user.id,
+                                      text=get_listing_text(data=data,
+                                                            tickets_bundle=tickets_bundle),
+                                      parse_mode="HTML",
+                                      reply_markup=get_tickets_ikb(link=tickets_bundle[data["curr_ticket"]]['gate']))
+
+            result_text = "".join(str(tickets_bundle))
+            await BotStates.diapason_tickets_review.set()
+        elif data["tickets_count"] == 1:
+            await my_bot.send_message(chat_id=message.from_user.id,
+                                      text=get_listing_text(data=data,
+                                                            tickets_bundle=tickets_bundle),
+                                      parse_mode="HTML",
+                                      reply_markup=get_small_tickets_ikb(
+                                          link=tickets_bundle[data["curr_ticket"]]['gate']))
+
+            result_text = "".join(str(tickets_bundle))
+            await BotStates.diapason_tickets_review.set()
+        else:
+            await my_bot.send_message(chat_id=message.from_user.id,
+                                      text="Билеты не найдены. Попробуйте найти самостоятельно на aviasales.com",
+                                      reply_markup=get_menu_kb())
+
+            result_text = None
+            await state.finish()
+        DBMethods.add_result(conn=history_db_connect, user_id=message.from_user.id,
+                             command_type="Диапазон цен", city_from=data["from_city"], city_to=data["to_city"],
+                             start_date=data["start_date"], period=data["period"], return_fly=data["return"],
+                             min_price=data["min_price"], max_price=data["max_price"], results=result_text)
+
+    except TypeError as error:
+        await message.reply(text="Некорректный ввод! Напишите максимальную цену билета цифрами в евро")
+        print(error)
+
+
+@my_disp.callback_query_handler(state=BotStates.diapason_tickets_review, text=">>")
+async def diapason_next_ticket(callback_data: types.CallbackQuery, state: FSMContext):
     """Функция колбек хендлер позволяет получить следующий в списке билет из результатов поиска"""
     async with state.proxy() as data:
         if data["curr_ticket"] + 1 > data["tickets_count"] - 1:
@@ -292,8 +328,8 @@ async def cheap_next_ticket(callback_data: types.CallbackQuery, state: FSMContex
                                        link=data["tickets_bundle"][data["curr_ticket"]]['gate']))
 
 
-@my_disp.callback_query_handler(state=BotStates.cheap_tickets_review, text="<<")
-async def cheap_previous_ticket(callback_data: types.CallbackQuery, state: FSMContext):
+@my_disp.callback_query_handler(state=BotStates.diapason_tickets_review, text="<<")
+async def diapason_previous_ticket(callback_data: types.CallbackQuery, state: FSMContext):
     """Функция колбек хендлер позволяет получить предыдущий в списке билет из результатов поиска"""
     async with state.proxy() as data:
         if data["curr_ticket"] - 1 < 0:
